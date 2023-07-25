@@ -20,7 +20,13 @@ private:
 	UPROPERTY(EditAnywhere, Category = Model, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UStaticMeshComponent> BottleMesh;
 	UPROPERTY(EditAnywhere, Category = Model, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UStaticMeshComponent> NeckMesh;
+	UPROPERTY(EditAnywhere, Category = Model, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UStaticMeshComponent> LiquidMesh;
+	UPROPERTY(EditAnywhere, Category = Model, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UStaticMeshComponent> LiquidNeckMesh;
+	UPROPERTY(EditAnywhere, Category = Model, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UStaticMeshComponent> CorkMesh;
 
 	UPROPERTY(EditAnywhere, Category = Material, meta = (AllowPrivateAccess = "true"))
 	FName WobbleXName = TEXT("WobbleX");

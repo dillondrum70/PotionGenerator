@@ -19,8 +19,17 @@ APotionBase::APotionBase()
 	BottleMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bottle Mesh"));
 	BottleMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
+	NeckMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Neck Mesh"));
+	NeckMesh->AttachToComponent(BottleMesh, FAttachmentTransformRules::KeepRelativeTransform);
+
+	CorkMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cork Mesh"));
+	CorkMesh->AttachToComponent(BottleMesh, FAttachmentTransformRules::KeepRelativeTransform);
+
 	LiquidMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Liquid Mesh"));
 	LiquidMesh->AttachToComponent(BottleMesh, FAttachmentTransformRules::KeepRelativeTransform);
+
+	LiquidNeckMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Liquid Neck Mesh"));
+	LiquidNeckMesh->AttachToComponent(BottleMesh, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
