@@ -18,6 +18,7 @@ APotionBase::APotionBase()
 
 	BottleMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Bottle Mesh"));
 	BottleMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
 	LiquidMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Liquid Mesh"));
 	LiquidMesh->AttachToComponent(BottleMesh, FAttachmentTransformRules::KeepRelativeTransform);
 }
@@ -45,8 +46,7 @@ void APotionBase::Tick(float DeltaTime)
 	TargetWobbleX = WobbleX * FMath::Sin(pulse * GetWorld()->GetTime().GetRealTimeSeconds());
 	TargetWobbleY = WobbleY * FMath::Sin(pulse * GetWorld()->GetTime().GetRealTimeSeconds());
 
-	FVector vel = lastPos - GetActorLocation();
-
+	FVector vel = (lastPos - GetActorLocation()) / VelocitySmoothing;
 	WobbleX = FMath::Clamp(WobbleX + (-vel.Y * WobbleLimit), -WobbleLimit, WobbleLimit);
 	WobbleY = FMath::Clamp(WobbleY + (vel.X * WobbleLimit), -WobbleLimit, WobbleLimit);
 

@@ -29,8 +29,8 @@ private:
 
 	TObjectPtr<UMaterialInstanceDynamic> matInst;
 
-	float WobbleX = 0;
-	float TargetWobbleX = 0;
+	float WobbleX = 0;	//Wobble amount coefficient based on velocity
+	float TargetWobbleX = 0;	//Coefficient combined with Sin to achieve wobbling effect
 
 	float WobbleY = 0;
 	float TargetWobbleY = 0;
@@ -38,9 +38,11 @@ private:
 	FVector lastPos;
 
 	UPROPERTY(EditAnywhere, Category = Potion, meta = (AllowPrivateAccess = "true"))
-	float WobbleSpeed = 3;
+	float WobbleSpeed = 3;	//Lower value = higher viscocity
 	UPROPERTY(EditAnywhere, Category = Potion, meta = (AllowPrivateAccess = "true"))
-	float WobbleLimit = .75f;
+	float WobbleLimit = .75f;	//Maximum angle of liquid as it oscillates, 1 is completely horizontal (so the surface points sideways)
+	UPROPERTY(EditAnywhere, Category = Potion, meta = (AllowPrivateAccess = "true"))
+	float VelocitySmoothing = 10.0f;	//Amount by which velocity is divided to remove jittery, sudden changes in velocity
 	
 public:	
 	// Sets default values for this actor's properties
