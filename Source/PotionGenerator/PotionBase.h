@@ -2,11 +2,15 @@
 
 #pragma once
 
+#include "PotionBody.h"
+#include "PotionNeck.h"
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "PotionBase.generated.h"
 
 class UStaticMeshComponent;
+class UStaticMesh;
 class UMaterial;
 class UMaterialInstanceDynamic;
 class UMovementComponent;
@@ -27,6 +31,13 @@ private:
 	TObjectPtr<UStaticMeshComponent> LiquidNeckMesh;
 	UPROPERTY(EditAnywhere, Category = Model, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UStaticMeshComponent> CorkMesh;
+
+	UPROPERTY(EditAnywhere, Category = ModelCollections, meta =(AllowPrivateAccess = "true"))
+	TArray<FPotionBody> PotionBodies;
+	UPROPERTY(EditAnywhere, Category = ModelCollections, meta = (AllowPrivateAccess = "true"))
+	TArray<FPotionNeck> PotionNecks;
+	UPROPERTY(EditAnywhere, Category = ModelCollections, meta = (AllowPrivateAccess = "true"))
+	TArray<TObjectPtr<UStaticMesh>> PotionCorks;
 
 	UPROPERTY(EditAnywhere, Category = Material, meta = (AllowPrivateAccess = "true"))
 	FName WobbleXName = TEXT("WobbleX");

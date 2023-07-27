@@ -9,6 +9,7 @@
 #include "GameFramework/MovementComponent.h"
 #include "Engine/World.h"
 #include "Math/UnrealMathUtility.h"
+#include "Engine/StaticMesh.h"
 
 // Sets default values
 APotionBase::APotionBase()
@@ -41,6 +42,17 @@ void APotionBase::BeginPlay()
 	LiquidMesh->SetMaterial(0, matInst);
 
 	lastPos = GetActorLocation();
+
+	int bodyIndex = FMath::RandRange(0, PotionBodies.Num() - 1);
+	BottleMesh->SetStaticMesh(PotionBodies[bodyIndex].GlassMesh);
+	LiquidMesh->SetStaticMesh(PotionBodies[bodyIndex].LiquidMesh);
+
+	int neckIndex = FMath::RandRange(0, PotionNecks.Num() - 1);
+	NeckMesh->SetStaticMesh(PotionNecks[neckIndex].GlassMesh);
+	LiquidNeckMesh->SetStaticMesh(PotionNecks[neckIndex].LiquidMesh);
+
+	int corkIndex = FMath::RandRange(0, PotionCorks.Num() - 1);
+	CorkMesh->SetStaticMesh(PotionCorks[neckIndex]);
 }
 
 // Called every frame
