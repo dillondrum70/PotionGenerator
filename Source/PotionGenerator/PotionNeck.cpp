@@ -5,8 +5,7 @@
 
 FPotionNeck::FPotionNeck()
 {
-	GlassMesh = nullptr;
-	LiquidMesh = nullptr;
+	
 }
 
 FPotionNeck::~FPotionNeck()

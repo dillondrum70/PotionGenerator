@@ -5,8 +5,7 @@
 
 FPotionBody::FPotionBody()
 {
-	GlassMesh = nullptr;
-	LiquidMesh = nullptr;
+	
 }
 
 FPotionBody::~FPotionBody()

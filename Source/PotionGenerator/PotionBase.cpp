@@ -10,6 +10,7 @@
 #include "Engine/World.h"
 #include "Math/UnrealMathUtility.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/StaticMeshSocket.h"
 
 // Sets default values
 APotionBase::APotionBase()
@@ -37,7 +38,7 @@ APotionBase::APotionBase()
 void APotionBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	matInst = UMaterialInstanceDynamic::Create(LiquidMesh->GetMaterial(0), this);
 	LiquidMesh->SetMaterial(0, matInst);
 
@@ -53,6 +54,11 @@ void APotionBase::BeginPlay()
 
 	int corkIndex = FMath::RandRange(0, PotionCorks.Num() - 1);
 	CorkMesh->SetStaticMesh(PotionCorks[neckIndex]);
+
+	if (NeckMesh->DoesSocketExist("Cork"))
+	{
+		CorkMesh->SetWorldLocation(NeckMesh->GetSocketLocation("Cork"));
+	}
 }
 
 // Called every frame
