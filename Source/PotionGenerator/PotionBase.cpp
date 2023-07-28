@@ -44,21 +44,7 @@ void APotionBase::BeginPlay()
 
 	lastPos = GetActorLocation();
 
-	int bodyIndex = FMath::RandRange(0, PotionBodies.Num() - 1);
-	BottleMesh->SetStaticMesh(PotionBodies[bodyIndex].GlassMesh);
-	LiquidMesh->SetStaticMesh(PotionBodies[bodyIndex].LiquidMesh);
-
-	int neckIndex = FMath::RandRange(0, PotionNecks.Num() - 1);
-	NeckMesh->SetStaticMesh(PotionNecks[neckIndex].GlassMesh);
-	LiquidNeckMesh->SetStaticMesh(PotionNecks[neckIndex].LiquidMesh);
-
-	int corkIndex = FMath::RandRange(0, PotionCorks.Num() - 1);
-	CorkMesh->SetStaticMesh(PotionCorks[neckIndex]);
-
-	if (NeckMesh->DoesSocketExist("Cork"))
-	{
-		CorkMesh->SetWorldLocation(NeckMesh->GetSocketLocation("Cork"));
-	}
+	RandomizeParts();
 }
 
 // Called every frame
@@ -95,3 +81,21 @@ void APotionBase::Tick(float DeltaTime)
 	UE_LOG(LogTemp, Display, TEXT("%f  %f"), WobbleX, WobbleY);
 }
 
+void APotionBase::RandomizeParts()
+{
+	int bodyIndex = FMath::RandRange(0, PotionBodies.Num() - 1);
+	BottleMesh->SetStaticMesh(PotionBodies[bodyIndex].GlassMesh);
+	LiquidMesh->SetStaticMesh(PotionBodies[bodyIndex].LiquidMesh);
+
+	int neckIndex = FMath::RandRange(0, PotionNecks.Num() - 1);
+	NeckMesh->SetStaticMesh(PotionNecks[neckIndex].GlassMesh);
+	LiquidNeckMesh->SetStaticMesh(PotionNecks[neckIndex].LiquidMesh);
+
+	int corkIndex = FMath::RandRange(0, PotionCorks.Num() - 1);
+	CorkMesh->SetStaticMesh(PotionCorks[neckIndex]);
+
+	if (NeckMesh->DoesSocketExist("Cork"))
+	{
+		CorkMesh->SetWorldLocation(NeckMesh->GetSocketLocation("Cork"));
+	}
+}
